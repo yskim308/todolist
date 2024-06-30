@@ -29,23 +29,25 @@
             <content class="w-full">
                 <h1 class='text-blue-950 font-bold text-9xl'>main div?</h1>
             </content>
-            <dialog id="taskDialog">
+            <dialog id="taskDialog" class="p-5 rounded-3xl">
                 <form id="taskInput" class="flex flex-col">
                     <ul>
                         <li>
-                            <label for="taskName">Task</label>
-                            <input type="text" id="taskName" name="task" required autofocus>
+                            <input class="text-3xl py-2" type="text" id="taskName" name="task" placeholder="Task name" required autofocus>
                         </li>
-                        <li>
-                            <label for="taskDescription">Description</label>
-                            <input type="text" id="taskDescription" name="description">
+                        <li >
+                            <textarea class="w-full h-10 py-2" id="taskDescription" name="description" placeholder="Description"></textarea>
                         </li>
-                        <li>
-                            <label for="taskDate">Date</label>
+                        <li class="font-extralight">
+                            <label for="taskDate">Due date:</label>
                             <input type="date" id="taskDate" name="date">
                         </li>
                     </ul>
                 </form>
+                <div class="flex pt-4 justify-around">
+                    <button class="bg-red-50 p-2 rounded-xl" type="button">Cancel</button>
+                    <button class="bg-blue-100 text-blue-950 p-2 rounded-xl" id="taskSubmit" form="taskDialog" type="submit">Add Task</button>
+                </div>
             </dialog>
         </main>
     </body>
