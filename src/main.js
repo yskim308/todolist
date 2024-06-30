@@ -21,4 +21,3 @@ inputButton.addEventListener('click', ()=>{
     formContainer.addEventListener('click', (event)=>{event.stopPropagation()}) 
     dialog.addEventListener('click', ()=>{dialog.close();})
 })
-//modal submit and cancel event listener
