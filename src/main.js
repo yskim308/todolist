@@ -1,3 +1,4 @@
+import { createDOMController } from './DOMController.js';
 import './style.css';
 import {createTask, createTaskList, createTasklist} from './taskClasses.js';
 
@@ -27,6 +28,7 @@ textArea.addEventListener("keyup", ()=>{
 //logic for adding tasks to taskList object
 //event listener for modal form submission 
 let taskList = createTaskList();
+let domController = createDOMController(taskList.todo);
 const modalForm = document.querySelector("#taskInput");
 modalForm.addEventListener('submit', (event)=>{
     event.preventDefault(); 
@@ -39,5 +41,6 @@ modalForm.addEventListener('submit', (event)=>{
 
     console.log(taskList.todo)
     event.target.reset();
+    domController.refreshList();
     dialog.close();
 })
