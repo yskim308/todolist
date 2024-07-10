@@ -8,11 +8,21 @@ function createDOMController(objectArray){
         }
     }
 
-    function createCheck(){ 
+    function createCheck(parentNode, task){ 
         const checkBox = document.createElement('input'); 
         checkBox.type = 'checkbox'; 
         checkBox.id = 'taskFinish'; 
         checkBox.name = 'task'; 
+        checkBox.addEventListener('change', ()=>{
+            if (checkBox.checked){
+                parentNode.classList.add('line-through', 'decoration-2');
+                task.finished = false;
+            }
+            else{
+                parentNode.classList.remove('line-through', 'decoration-2');
+                task.finished = true; 
+            }
+        })
         return checkBox; 
     } 
 
@@ -39,7 +49,7 @@ function createDOMController(objectArray){
     function displayTask(task){
         const taskContainer = document.createElement('div'); 
         taskContainer.classList.add('flex', 'p-3');
-        const checkBox = createCheck();
+        const checkBox = createCheck(taskContainer, task);
         taskContainer.appendChild(checkBox);
 
         const contentContainer = document.createElement('container');    
@@ -63,6 +73,7 @@ function createDOMController(objectArray){
             displayTask(objectArray[i]); 
         }
     }
+
 
     return {refreshList}
 }
