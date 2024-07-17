@@ -11,7 +11,7 @@ function createDOMController(objectArray){
     function createCheck(parentNode, task){ 
         const checkBoxContainer = document.createElement('div');
         checkBoxContainer.id = 'checkBoxContainer';
-        checkBoxContainer.classList.add('p-3', 'flex', 'flex-col', 'justify-start');
+        checkBoxContainer.classList.add('py-3', 'pr-3', 'flex', 'flex-col', 'justify-start');
         const checkBox = document.createElement('input'); 
         checkBox.classList.add('checked:bg-slate-300','rounded-full', 'appearance-none', 'w-5', 'h-5', 'border-2', 'border-black');
         checkBox.type = 'checkbox'; 
@@ -56,7 +56,7 @@ function createDOMController(objectArray){
 
     function displayTask(task){
         const taskContainer = document.createElement('div'); 
-        taskContainer.classList.add('flex', 'p-3');
+        taskContainer.classList.add('flex', 'py-3');
         taskContainer.id = 'taskContainer';
 
         //add checkbox 

@@ -49,3 +49,7 @@ modalForm.addEventListener('submit', (event)=>{
 let defaultTask = createTask('Get Groceries', 'get eggs, get soap, get ham, buy 30 frying pans', '2024-07-03');
 taskList.addTask(defaultTask);
 domController.refreshList();
+
+let a = createTask('solve world hunger', 'do some magic to solve wold hunger', '2025-01-25');
+taskList.addTask(a);
+domController.refreshList();

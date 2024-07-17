@@ -26,9 +26,14 @@
                     <p class="p-2 font-extralight">Upcoming</p>
                 </sideButton>
             </aside>
-            <content class="w-full py-10 px-20">
-                <h1 class='text-blue-950 font-bold text-6xl'>inbox</h1>
-                <div id="listContainer"></div>
+            <content id='content-container' class="w-full py-10 px-20 flex justify-start">
+                <div id='content' class='p-10'>
+                    <div id='header-container' class='flex pb-6'>
+                        <h1 class='text-blue-950 font-bold text-6xl'>inbox</h1>
+                        <button type='button' id='removeTaskButton' class='px-10 self-end'>clear</button>
+                    </div>
+                    <div id="listContainer"></div>
+                </div>
             </content>
             <dialog id="taskDialog" class="p-5 rounded-3xl">
                 <container id="formContainer">
