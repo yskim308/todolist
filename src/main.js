@@ -44,3 +44,8 @@ modalForm.addEventListener('submit', (event)=>{
     domController.refreshList();
     dialog.close();
 })
+
+//default task just to check styling quickly 
+let defaultTask = createTask('Get Groceries', 'get eggs, get soap, get ham, buy 30 frying pans', '2024-07-03');
+taskList.addTask(defaultTask);
+domController.refreshList();

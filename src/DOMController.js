@@ -9,33 +9,40 @@ function createDOMController(objectArray){
     }
 
     function createCheck(parentNode, task){ 
+        const checkBoxContainer = document.createElement('div');
+        checkBoxContainer.id = 'checkBoxContainer';
+        checkBoxContainer.classList.add('p-3', 'flex', 'flex-col', 'justify-start');
         const checkBox = document.createElement('input'); 
+        checkBox.classList.add('checked:bg-slate-300','rounded-full', 'appearance-none', 'w-5', 'h-5', 'border-2', 'border-black');
         checkBox.type = 'checkbox'; 
         checkBox.id = 'taskFinish'; 
         checkBox.name = 'task'; 
         checkBox.addEventListener('change', ()=>{
             if (checkBox.checked){
-                parentNode.classList.add('line-through', 'decoration-2');
+                parentNode.classList.add('line-through', 'decoration-from-font');
                 task.finished = false;
             }
             else{
-                parentNode.classList.remove('line-through', 'decoration-2');
+                parentNode.classList.remove('line-through', 'decoration-from-font');
                 task.finished = true; 
             }
         })
-        return checkBox; 
+        checkBoxContainer.appendChild(checkBox);
+        return checkBoxContainer; 
     } 
 
     
     function createHeader(taskName){
-        const header = document.createElement('contaiener'); 
+        const header = document.createElement('div'); 
         header.innerText = taskName; 
+        header.classList.add('text-lg', 'font-semibold', 'leading-none');
         return header; 
     }
 
     function createDescription(taskDescription){
-        const description = document.createElement('container');
+        const description = document.createElement('div');
         description.innerHTML = taskDescription;
+        description.classList.add('font-light', 'text-sm');
         return description;
 
     }
@@ -43,20 +50,25 @@ function createDOMController(objectArray){
     function createDate(dueDate){
         const taskDueDate = document.createElement('div');
         taskDueDate.innerHTML = dueDate; 
+        taskDueDate.classList.add('text-xs');
         return taskDueDate;
     }
 
     function displayTask(task){
         const taskContainer = document.createElement('div'); 
         taskContainer.classList.add('flex', 'p-3');
+        taskContainer.id = 'taskContainer';
+
+        //add checkbox 
         const checkBox = createCheck(taskContainer, task);
         taskContainer.appendChild(checkBox);
-
-        const contentContainer = document.createElement('container');    
+        //add task name and description
+        const contentContainer = document.createElement('div');    
         const taskHeader = createHeader(task.name);
         const taskDescription = createDescription(task.description);
         contentContainer.appendChild(taskHeader);
         contentContainer.appendChild(taskDescription);
+        //add due date if entered
         if (task.dueDate){
             const taskDueDate = createDate(task.dueDate);
             contentContainer.appendChild(taskDueDate); 
