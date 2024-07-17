@@ -1,6 +1,6 @@
 import { createDOMController } from './DOMController.js';
 import './style.css';
-import {createTask, createTaskList, createTasklist} from './taskClasses.js';
+import {createTask, createListController} from './taskClasses.js';
 
 const dialog = document.querySelector("#taskDialog"); 
 //event listener for button to add tasks
@@ -25,10 +25,11 @@ textArea.addEventListener("keyup", ()=>{
     textArea.style.height = textArea.scrollHeight + 'px';
 });
 
+
 //logic for adding tasks to taskList object
 //event listener for modal form submission 
-let taskList = createTaskList();
-let domController = createDOMController(taskList.todo);
+let listController = createListController();
+let domController = createDOMController(listController.todo);
 const modalForm = document.querySelector("#taskInput");
 modalForm.addEventListener('submit', (event)=>{
     event.preventDefault(); 
@@ -37,19 +38,25 @@ modalForm.addEventListener('submit', (event)=>{
     let dueDate = document.querySelector("#taskDate").value; 
     //create task and insert into taskList object
     let task = createTask(taskName, taskDescription, dueDate); 
-    taskList.addTask(task);
+    listController.addTask(task);
 
-    console.log(taskList.todo)
     event.target.reset();
     domController.refreshList();
     dialog.close();
 })
 
+const clearButton = document.querySelector('#removeTaskButton');
+clearButton.addEventListener('click', ()=>{
+    listController.clearCompleted();
+    console.log(listController.todo);
+    domController.refreshList();
+})
+
 //default task just to check styling quickly 
 let defaultTask = createTask('Get Groceries', 'get eggs, get soap, get ham, buy 30 frying pans', '2024-07-03');
-taskList.addTask(defaultTask);
+listController.addTask(defaultTask);
 domController.refreshList();
 
 let a = createTask('solve world hunger', 'do some magic to solve wold hunger', '2025-01-25');
-taskList.addTask(a);
+listController.addTask(a);
 domController.refreshList();

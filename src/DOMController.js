@@ -20,11 +20,11 @@ function createDOMController(objectArray){
         checkBox.addEventListener('change', ()=>{
             if (checkBox.checked){
                 parentNode.classList.add('line-through', 'decoration-from-font');
-                task.finished = false;
+                task.finished = true;
             }
             else{
                 parentNode.classList.remove('line-through', 'decoration-from-font');
-                task.finished = true; 
+                task.finished = false; 
             }
         })
         checkBoxContainer.appendChild(checkBox);

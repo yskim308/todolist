@@ -3,7 +3,7 @@ function createTask(name, description, dueDate){
     return {name: name, description: description, dueDate: dueDate, finished};
 }
 
-function createTaskList(){
+function createListController(){
     let todo = [];
     function addTask(object){
         let length = todo.length;
@@ -30,7 +30,16 @@ function createTaskList(){
         }
     }
 
-    return {todo, addTask, removeTask}
+    function clearCompleted(){
+        let length = todo.length; 
+        for (let i = length -1; i >= 0; i--){
+            if (todo[i].finished){
+                todo.splice(i, 1);
+            }
+        }
+    }
+
+    return {todo, addTask, removeTask, clearCompleted}
 }
 
-export {createTask, createTaskList};
+export {createTask, createListController};
