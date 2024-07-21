@@ -11,19 +11,19 @@ function createDOMController(){
     function createCheck(parentNode, task){ 
         const checkBoxContainer = document.createElement('div');
         checkBoxContainer.id = 'checkBoxContainer';
-        checkBoxContainer.classList.add('py-3', 'pr-3', 'flex', 'flex-col', 'justify-start');
+        checkBoxContainer.classList.add('pr-3', 'flex', 'flex-col', 'justify-start');
         const checkBox = document.createElement('input'); 
-        checkBox.classList.add('checked:bg-slate-300','rounded-full', 'appearance-none', 'w-5', 'h-5', 'border-2', 'border-black');
+        checkBox.classList.add('checked:bg-slate-300','rounded-full', 'appearance-none', 'w-6', 'h-6', 'border-2', 'border-black');
         checkBox.type = 'checkbox'; 
         checkBox.id = 'taskFinish'; 
         checkBox.name = 'task'; 
         checkBox.addEventListener('change', ()=>{
             if (checkBox.checked){
-                parentNode.classList.add('line-through', 'decoration-from-font');
+                parentNode.classList.add('line-through', 'decoration-2');
                 task.finished = true;
             }
             else{
-                parentNode.classList.remove('line-through', 'decoration-from-font');
+                parentNode.classList.remove('line-through', 'decoration-2');
                 task.finished = false; 
             }
         })
