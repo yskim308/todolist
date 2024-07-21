@@ -29,7 +29,9 @@ textArea.addEventListener("keyup", ()=>{
 //logic for adding tasks to taskList object
 //event listener for modal form submission 
 let listController = createListController();
-let domController = createDOMController(listController.todo);
+let domController = createDOMController();
+domController.refreshList(listController.todo);
+
 const modalForm = document.querySelector("#taskInput");
 modalForm.addEventListener('submit', (event)=>{
     event.preventDefault(); 
@@ -40,23 +42,15 @@ modalForm.addEventListener('submit', (event)=>{
     let task = createTask(taskName, taskDescription, dueDate); 
     listController.addTask(task);
 
+    domController.refreshList(listController.todo);
     event.target.reset();
-    domController.refreshList();
+
     dialog.close();
 })
 
 const clearButton = document.querySelector('#removeTaskButton');
 clearButton.addEventListener('click', ()=>{
     listController.clearCompleted();
-    console.log(listController.todo);
-    domController.refreshList();
+    domController.refreshList(listController.todo);
 })
 
-//default task just to check styling quickly 
-let defaultTask = createTask('Get Groceries', 'get eggs, get soap, get ham, buy 30 frying pans', '2024-07-03');
-listController.addTask(defaultTask);
-domController.refreshList();
-
-let a = createTask('solve world hunger', 'do some magic to solve wold hunger', '2025-01-25');
-listController.addTask(a);
-domController.refreshList();

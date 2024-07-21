@@ -1,6 +1,6 @@
 import './style.css';
 
-function createDOMController(objectArray){
+function createDOMController(){
     function removeAll(){
         const listContainer = document.querySelector("#listContainer"); 
         while (listContainer.firstChild){
@@ -78,8 +78,11 @@ function createDOMController(objectArray){
         document.querySelector("#listContainer").appendChild(taskContainer);
     }
 
-    function refreshList(){ 
+    function refreshList(objectArray){ 
         removeAll(); 
+        if (!objectArray){
+            return;
+        }
         let length = objectArray.length
         for (let i = 0; i < length; i++){
             displayTask(objectArray[i]); 

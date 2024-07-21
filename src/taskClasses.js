@@ -4,7 +4,13 @@ function createTask(name, description, dueDate){
 }
 
 function createListController(){
-    let todo = [];
+    let todo = JSON.parse(localStorage.getItem('todo'));
+
+    function updateLocalStorage(){
+        let todoJSON = JSON.stringify(todo); 
+        localStorage.setItem('todo', todoJSON);
+    }
+
     function addTask(object){
         let length = todo.length;
         for (let i = 0; i < length; i ++){
@@ -14,6 +20,7 @@ function createListController(){
             }
         }
         todo.push(object);
+        updateLocalStorage();
     } 
     
     function removeTask(object){
@@ -37,6 +44,7 @@ function createListController(){
                 todo.splice(i, 1);
             }
         }
+        updateLocalStorage();
     }
 
     return {todo, addTask, removeTask, clearCompleted}
