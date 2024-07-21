@@ -1,9 +1,9 @@
-function createTask(name, description, dueDate){
-    let finished = false;
-    return {name: name, description: description, dueDate: dueDate, finished};
-}
-
 function createListController(){
+    function createTask(name, description, dueDate){
+        let finished = false;
+        return {name: name, description: description, dueDate: dueDate, finished};
+    }
+
     let todo = JSON.parse(localStorage.getItem('todo'));
 
     function updateLocalStorage(){
@@ -47,7 +47,7 @@ function createListController(){
         updateLocalStorage();
     }
 
-    return {todo, addTask, removeTask, clearCompleted}
+    return {todo, addTask, removeTask, clearCompleted, createTask};
 }
 
-export {createTask, createListController};
+export {createListController};

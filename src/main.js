@@ -1,56 +1,18 @@
 import { createDOMController } from './DOMController.js';
 import './style.css';
-import {createTask, createListController} from './taskClasses.js';
-
-const dialog = document.querySelector("#taskDialog"); 
-//event listener for button to add tasks
-const inputButton = document.querySelector("#taskInputButton");
-inputButton.addEventListener('click', ()=>{
-    //show modal 
-    dialog.showModal(); 
-    //close modal when clicking on cancel or clicking outside of form
-    const cancel = document.querySelector("#taskCancel");
-    cancel.addEventListener("click", ()=>{
-        dialog.close();
-    })
-    const formContainer = document.querySelector("#formContainer");
-    formContainer.addEventListener('click', (event)=>{event.stopPropagation()}) 
-    dialog.addEventListener('click', ()=>{dialog.close();})
-});
-
-//dynmacailly resize description box 
-const textArea = document.querySelector("#taskDescription");
-textArea.addEventListener("keyup", ()=>{
-    textArea.style.height = "10px";
-    textArea.style.height = textArea.scrollHeight + 'px';
-});
+import {createListController} from './taskClasses.js';
+import { createEventController} from './eventListener.js';
 
 
-//logic for adding tasks to taskList object
-//event listener for modal form submission 
+//create the listController and domController instances
 let listController = createListController();
 let domController = createDOMController();
 domController.refreshList(listController.todo);
 
-const modalForm = document.querySelector("#taskInput");
-modalForm.addEventListener('submit', (event)=>{
-    event.preventDefault(); 
-    let taskName = document.querySelector("#taskName").value;
-    let taskDescription = document.querySelector("#taskDescription").value; 
-    let dueDate = document.querySelector("#taskDate").value; 
-    //create task and insert into taskList object
-    let task = createTask(taskName, taskDescription, dueDate); 
-    listController.addTask(task);
+//pass in the list controller and dom controller instances to the event controller
+let eventController = createEventController(listController, domController);
+eventController.addModalListener();
+eventController.addSubmitListener();
+eventController.addClearListener();
 
-    domController.refreshList(listController.todo);
-    event.target.reset();
-
-    dialog.close();
-})
-
-const clearButton = document.querySelector('#removeTaskButton');
-clearButton.addEventListener('click', ()=>{
-    listController.clearCompleted();
-    domController.refreshList(listController.todo);
-})
 
