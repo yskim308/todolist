@@ -51,6 +51,17 @@ function createDOMController(){
         const taskDueDate = document.createElement('div');
         taskDueDate.innerHTML = dueDate; 
         taskDueDate.classList.add('text-xs');
+        const inputDate = new Date(dueDate);
+        const today = new Date();
+        inputDate.setHours(0, 0, 0, 0);
+        today.setHours(0, 0, 0, 0);
+
+        if (inputDate < today){
+            taskDueDate.classList.add('text-rose-800')
+        }
+        else{
+            taskDueDate.classList.add('text-green-800');
+        }
         return taskDueDate;
     }
 
