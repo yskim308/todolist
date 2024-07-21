@@ -42,7 +42,7 @@ function createDOMController(){
     function createDescription(taskDescription){
         const description = document.createElement('div');
         description.innerHTML = taskDescription;
-        description.classList.add('font-light', 'text-sm');
+        description.classList.add('font-light');
         return description;
 
     }

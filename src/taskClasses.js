@@ -12,13 +12,6 @@ function createListController(){
     }
 
     function addTask(object){
-        let length = todo.length;
-        for (let i = 0; i < length; i ++){
-            if (todo[i].name === object.name){
-                alert("Task of this name already exists!"); 
-                return;
-            }
-        }
         todo.push(object);
         updateLocalStorage();
     } 
