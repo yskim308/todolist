@@ -1,7 +1,11 @@
 function createListController(){
     function createTask(name, description, dueDate){
         let finished = false;
-        return {name: name, description: description, dueDate: dueDate, finished};
+        const dueDateObject = null;
+        if (dueDate){
+            dueDateObject = new Date(dueDate);
+        }
+        return {name: name, description: description, dueDate: dueDate, finished, dueDateObject};
     }
 
     let todo = JSON.parse(localStorage.getItem('todo'));
@@ -16,20 +20,6 @@ function createListController(){
         updateLocalStorage();
     } 
     
-    function removeTask(object){
-        let length = todo.length;
-        if (!length) {
-            console.log(object + " cannot be removed, list is empty!");
-            return;
-        }
-        for (let i = 0; i < length; i++){
-            if (todo[i].name === object.name){
-                todo.splice(i, 1);
-                return;
-            }
-        }
-    }
-
     function clearCompleted(){
         let length = todo.length; 
         for (let i = length -1; i >= 0; i--){
@@ -40,7 +30,7 @@ function createListController(){
         updateLocalStorage();
     }
 
-    return {todo, addTask, removeTask, clearCompleted, createTask};
+    return {todo, addTask, clearCompleted, createTask};
 }
 
 export {createListController};
