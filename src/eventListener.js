@@ -1,3 +1,5 @@
+import { list } from "postcss";
+
 function createEventController(listController, domController){
     const dialog = document.querySelector("#taskDialog"); 
     function addModalListener(){
@@ -50,7 +52,29 @@ function createEventController(listController, domController){
         })
     }
 
-    return {addModalListener, addSubmitListener, addClearListener};
+    function addFilterViewListener(){
+        const header = document.querySelector('#header');
+        const inboxButton = document.querySelector('#inbox');
+        inboxButton.addEventListener('click', ()=>{
+            domController.updateState(0);
+            header.innerText = 'inbox';
+            domController.refreshList(listController.todo)
+        })
+        const todayButton = document.querySelector('#today');
+        todayButton.addEventListener('click', ()=>{
+            domController.updateState(1);
+            header.innerText = 'today';
+            domController.refreshList(listController.todo)
+        })
+        const upcomingButton = document.querySelector('#upcoming');
+        upcomingButton.addEventListener('click', ()=>{
+            domController.updateState(2);
+            header.innerText = 'upcoming';
+            domController.refreshList(listController.todo)
+        })
+    }
+
+    return {addModalListener, addSubmitListener, addClearListener, addFilterViewListener};
 }
 
 export {createEventController}

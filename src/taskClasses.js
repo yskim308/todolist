@@ -1,9 +1,10 @@
 function createListController(){
     function createTask(name, description, dueDate){
         let finished = false;
-        const dueDateObject = null;
+        let dueDateObject;
         if (dueDate){
             dueDateObject = new Date(dueDate);
+            dueDateObject.setHours(0, 0, 0, 0);
         }
         return {name: name, description: description, dueDate: dueDate, finished, dueDateObject};
     }

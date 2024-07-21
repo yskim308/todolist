@@ -1,6 +1,12 @@
 import './style.css';
 
 function createDOMController(){
+    //state 0 is inbox, 1 is today, 2 is upcoming
+    let state = 0
+    function updateState(newState){
+        state = newState;
+    }
+
     function removeAll(){
         const listContainer = document.querySelector("#listContainer"); 
         while (listContainer.firstChild){
@@ -89,19 +95,65 @@ function createDOMController(){
         document.querySelector("#listContainer").appendChild(taskContainer);
     }
 
+    function displayAll(array){
+        let length = array.length;
+        for (let i = 0; i < length; i++){
+            displayTask(array[i]);
+        }
+    }
+    
+    function displayToday(array){
+        let length = array.length; 
+        const today = new Date();
+        today.setHours(0,0,0,0);
+
+        for (let i = 0; i < length; i++){
+            if (array[i].dueDateObject < today){
+                continue
+            }
+            else if (array[i].dueDateObject > today){
+                continue
+            }
+            else{
+                displayTask(array[i]);
+            }
+        }
+    }
+
+    function displayUpcoming(array){
+        let length = array.length;
+        const today = new Date();
+        today.setHours(0,0,0,0);
+
+        for (let i = 0; i < length; i++){
+            if (array[i].dueDateObject >= today){
+                displayTask(array[i]);
+            }
+        }
+    }
+
     function refreshList(objectArray){ 
+        console.log("state from refresh list call: " + state);
         removeAll(); 
         if (!objectArray){
             return;
         }
-        let length = objectArray.length
-        for (let i = 0; i < length; i++){
-            displayTask(objectArray[i]); 
+
+        const today = new Date()
+        today.setHours(0,0,0,0);
+        if (state === 0){
+            displayAll(objectArray)
+        }
+        else if (state === 1){
+            displayToday(objectArray);
+        }
+        else if (state === 2){
+            displayUpcoming(objectArray);
         }
     }
 
 
-    return {refreshList}
+    return {removeAll, displayTask, refreshList, updateState}
 }
 
 export {createDOMController}

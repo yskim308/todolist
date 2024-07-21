@@ -14,5 +14,5 @@ let eventController = createEventController(listController, domController);
 eventController.addModalListener();
 eventController.addSubmitListener();
 eventController.addClearListener();
-
+eventController.addFilterViewListener();
 
