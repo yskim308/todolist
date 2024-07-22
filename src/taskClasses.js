@@ -10,14 +10,25 @@ function createListController(){
     }
 
     let todo = JSON.parse(localStorage.getItem('todo'));
+    let todoLength = todo.length; 
+    for (let i = 0; i < todoLength; i++){
+        if (todo[i].dueDateObject){
+            todo[i].dueDateObject = new Date(todo[i].dueDate);
+        }
+    }
 
     function updateLocalStorage(){
         let todoJSON = JSON.stringify(todo); 
         localStorage.setItem('todo', todoJSON);
     }
 
+    function sortByDate(){
+        todo.sort((a,b) => a.dueDateObject - b.dueDateObject);
+    }
+
     function addTask(object){
         todo.push(object);
+        sortByDate();
         updateLocalStorage();
     } 
     
