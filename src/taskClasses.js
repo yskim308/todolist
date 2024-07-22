@@ -6,7 +6,7 @@ function createListController(){
             dueDateObject = new Date(dueDate);
             dueDateObject.setHours(0, 0, 0, 0);
         }
-        return {name: name, description: description, dueDate: dueDate, finished, dueDateObject};
+        return {name, description, dueDate, finished, dueDateObject};
     }
 
     let todo = JSON.parse(localStorage.getItem('todo'));
