@@ -2,6 +2,7 @@ import { list } from "postcss";
 
 function createEventController(listController, domController){
     const dialog = document.querySelector("#taskDialog"); 
+    const projectDialog = document.querySelector('#projectDialog');
     function addModalListener(){
         //event listener for button to add tasks
         const inputButton = document.querySelector("#taskInputButton");
@@ -24,6 +25,20 @@ function createEventController(listController, domController){
             textArea.style.height = "10px";
             textArea.style.height = textArea.scrollHeight + 'px';
         });
+
+        //event listener for button to add projects
+        const projectSubmit = document.querySelector('#projectInputButton');
+        projectSubmit.addEventListener('click', ()=>{
+            projectDialog.showModal();
+            const projectCancel = document.querySelector('#projectCancel')
+            projectCancel.addEventListener('click', ()=>{
+                projectDialog.close()
+            });
+            const projectForm = document.querySelector('#projectInput');
+            projectForm.addEventListener('click', (event)=>{event.stopPropagation()});
+            projectDialog.addEventListener('click', ()=>{projectDialog.close();});
+        }) 
+
     }
 
     function addSubmitListener(){
