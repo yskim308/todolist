@@ -12,6 +12,11 @@ function createDOMController(){
         while (listContainer.firstChild){
             listContainer.removeChild(listContainer.lastChild);
         }
+
+        const projectContainer = document.querySelector('#projectContainer');
+        while (projectContainer.firstChild){
+            projectContainer.removeChild(projectContainer.lastChild);
+        }
     }
 
     function createCheck(parentNode, task){ 
@@ -95,6 +100,31 @@ function createDOMController(){
         document.querySelector("#listContainer").appendChild(taskContainer);
     }
 
+    function displayProject(projectName){
+        const projectContainer = document.querySelector('#projectContainer');
+
+        const project = document.createElement('div'); 
+        project.classList.add('flex', 'py-3', 'justify-between');
+        project.id = 'projectID';
+
+        projectTitle = document.createElement('div');
+        projectTitle.innerText = projectName;
+
+        removeButton = document.createElement('button');
+        removeButton.classList.add= 'removeButton';
+        removeButton.innerText = 'X';
+
+        project.appendChild(projectTitle);
+        project.appendChild(removeButton);
+        projectContainer.appendChild(project);
+    }
+
+    function displayProjectList(array){
+        array.forEach((project) => {
+            displayProject(project);
+        })
+    }
+
     function displayAll(array){
         let length = array.length;
         for (let i = 0; i < length; i++){
@@ -131,6 +161,7 @@ function createDOMController(){
             }
         }
     }
+
 
     function refreshList(objectArray){ 
         console.log("state from refresh list call: " + state);

@@ -15,4 +15,5 @@ eventController.addModalListener();
 eventController.addSubmitListener();
 eventController.addClearListener();
 eventController.addFilterViewListener();
+eventController.addProjectSubmitListener();
 

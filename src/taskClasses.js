@@ -1,30 +1,37 @@
 function createListController(){
-    function createTask(name, description, dueDate){
+    function createTask(name, description, dueDate, project){
         let finished = false;
         let dueDateObject;
         if (dueDate){
             dueDateObject = new Date(dueDate);
             dueDateObject.setHours(0, 0, 0, 0);
         }
-        return {name, description, dueDate, finished, dueDateObject};
+        return {name, description, dueDate, finished, dueDateObject, project};
     }
 
     let todo = JSON.parse(localStorage.getItem('todo'));
     let todoLength = todo.length; 
+
+    let projectList = jSON.parse(localStorage.getItem('projectList'));
     for (let i = 0; i < todoLength; i++){
         if (todo[i].dueDateObject){
             todo[i].dueDateObject = new Date(todo[i].dueDate);
         }
     }
 
-    function updateLocalStorage(){
-        let todoJSON = JSON.stringify(todo); 
-        localStorage.setItem('todo', todoJSON);
-    }
-
     function sortByDate(){
         todo.sort((a,b) => a.dueDateObject - b.dueDateObject);
     }
+    sortByDate(); //sort when instance is created 
+
+    function updateLocalStorage(){
+        let todoJSON = JSON.stringify(todo); 
+        localStorage.setItem('todo', todoJSON);
+
+        let projectJSON = JSON.stringify(projectList);
+        localStorage.setItem('projectList', projectJSON);
+    }
+
 
     function addTask(object){
         todo.push(object);
@@ -42,7 +49,7 @@ function createListController(){
         updateLocalStorage();
     }
 
-    return {todo, addTask, clearCompleted, createTask};
+    return {todo, projectList, addTask, clearCompleted, createTask};
 }
 
 export {createListController};
