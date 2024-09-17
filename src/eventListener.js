@@ -1,3 +1,5 @@
+import { list } from "postcss";
+
 function createEventController(listController, domController){
     const dialog = document.querySelector("#taskDialog"); 
     const projectDialog = document.querySelector('#projectDialog');
@@ -62,11 +64,22 @@ function createEventController(listController, domController){
         form.addEventListener('submit', (event)=>{
             event.preventDefault();
             let projectName = document.querySelector('#projectName').value;
-            listController.projectList.append(projectName); 
+            listController.addProject(projectName); 
             domController.displayProjectList(listController.projectList);
             event.target.reset();
 
             projectDialog.close();
+        })
+    }
+
+    function addRemoveProjectListener(){
+        const nodeList = document.querySelectorAll('.removeButton');
+        nodeList.forEach((button)=>{
+            button.addEventListener('click', ()=>{
+                listController.removeProject(button.parentNode);
+                domController.displayProjectList(listController.projectList);
+                console.log(listController.projectList);
+            })
         })
     }
 
@@ -100,7 +113,9 @@ function createEventController(listController, domController){
         })
     }
 
-    return {addModalListener, addSubmitListener, addClearListener, addFilterViewListener, addProjectSubmitListener};
+    return {addModalListener, addSubmitListener, 
+        addClearListener, addFilterViewListener, 
+        addProjectSubmitListener, addRemoveProjectListener};
 }
 
 export {createEventController}

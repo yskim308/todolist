@@ -10,9 +10,15 @@ function createListController(){
     }
 
     let todo = JSON.parse(localStorage.getItem('todo'));
+    if (!todo){
+        todo = [];
+    }
     let todoLength = todo.length; 
 
-    let projectList = jSON.parse(localStorage.getItem('projectList'));
+    let projectList = JSON.parse(localStorage.getItem('projectList'));
+    if (!projectList){
+        projectList = [];
+    }
     for (let i = 0; i < todoLength; i++){
         if (todo[i].dueDateObject){
             todo[i].dueDateObject = new Date(todo[i].dueDate);
@@ -39,6 +45,18 @@ function createListController(){
         updateLocalStorage();
     } 
     
+    function addProject(project){
+        projectList.push(project);
+        updateLocalStorage();
+    }
+
+    function removeProject(projectName){
+        let index = projectList.indexOf(projectName);
+        if (index !== -1){
+            projectList.splice(index, 1);
+        }
+    }
+    
     function clearCompleted(){
         let length = todo.length; 
         for (let i = length -1; i >= 0; i--){
@@ -49,7 +67,7 @@ function createListController(){
         updateLocalStorage();
     }
 
-    return {todo, projectList, addTask, clearCompleted, createTask};
+    return {todo, projectList, addTask, addProject, clearCompleted, createTask, removeProject};
 }
 
 export {createListController};

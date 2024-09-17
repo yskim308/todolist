@@ -8,6 +8,7 @@ import { createEventController} from './eventListener.js';
 let listController = createListController();
 let domController = createDOMController();
 domController.refreshList(listController.todo);
+domController.displayProjectList(listController.projectList);
 
 //pass in the list controller and dom controller instances to the event controller
 let eventController = createEventController(listController, domController);
@@ -16,4 +17,5 @@ eventController.addSubmitListener();
 eventController.addClearListener();
 eventController.addFilterViewListener();
 eventController.addProjectSubmitListener();
+eventController.addRemoveProjectListener();
 

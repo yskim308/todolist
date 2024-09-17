@@ -12,7 +12,9 @@ function createDOMController(){
         while (listContainer.firstChild){
             listContainer.removeChild(listContainer.lastChild);
         }
+    }
 
+    function removeProjects(){
         const projectContainer = document.querySelector('#projectContainer');
         while (projectContainer.firstChild){
             projectContainer.removeChild(projectContainer.lastChild);
@@ -105,14 +107,15 @@ function createDOMController(){
 
         const project = document.createElement('div'); 
         project.classList.add('flex', 'py-3', 'justify-between');
-        project.id = 'projectID';
+        project.id = projectName;
 
-        projectTitle = document.createElement('div');
+        const projectTitle = document.createElement('div');
         projectTitle.innerText = projectName;
 
-        removeButton = document.createElement('button');
-        removeButton.classList.add= 'removeButton';
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('removeButton');
         removeButton.innerText = 'X';
+        removeButton.type = 'button';
 
         project.appendChild(projectTitle);
         project.appendChild(removeButton);
@@ -120,6 +123,7 @@ function createDOMController(){
     }
 
     function displayProjectList(array){
+        removeProjects();
         array.forEach((project) => {
             displayProject(project);
         })
@@ -184,7 +188,7 @@ function createDOMController(){
     }
 
 
-    return {removeAll, displayTask, refreshList, updateState}
+    return {removeAll, displayTask, refreshList, updateState, displayProjectList}
 }
 
 export {createDOMController}
