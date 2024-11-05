@@ -73,14 +73,16 @@ function createEventController(listController, domController){
     }
 
     function addRemoveProjectListener(){
-        const nodeList = document.querySelectorAll('.removeButton');
-        nodeList.forEach((button)=>{
-            button.addEventListener('click', ()=>{
-                listController.removeProject(button.parentNode);
-                domController.displayProjectList(listController.projectList);
-                console.log(listController.projectList);
-            })
+        const projectList = document.querySelector('#projectContainer');
+        projectList.addEventListener('click', (event)=>{
+            if (event.target.classList.contains('removeButton')){
+                if (confirm("Deleting this project will remove all the tasks as well. are you sure?")){
+                    listController.removeProject(event.target.parentNode.id);
+                    domController.displayProjectList(listController.projectList);
+                }
+            }
         })
+
     }
 
     function addClearListener(){

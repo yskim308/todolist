@@ -55,6 +55,7 @@ function createListController(){
         if (index !== -1){
             projectList.splice(index, 1);
         }
+        updateLocalStorage();
     }
     
     function clearCompleted(){
