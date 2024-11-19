@@ -1,4 +1,5 @@
 import './style.css';
+import trashIcon from './trash.svg' 
 
 function createDOMController(){
     //state 0 is inbox, 1 is today, 2 is upcoming
@@ -106,19 +107,26 @@ function createDOMController(){
         const projectContainer = document.querySelector('#projectContainer');
 
         const project = document.createElement('div'); 
-        project.classList.add('flex', 'py-3', 'justify-between');
+        project.classList.add('flex', 'pl-5', 'pr-3', 'py-2', 'justify-between', 'hover:bg-gray-200' );
         project.id = projectName;
 
         const projectTitle = document.createElement('div');
+        projectTitle.classList.add('font-light');
         projectTitle.innerText = projectName;
 
+        /*
         const removeButton = document.createElement('button');
         removeButton.classList.add('removeButton');
-        removeButton.innerText = 'X';
-        removeButton.type = 'button';
+        */
+        const trashIconImg = document.createElement('img');
+        trashIconImg.src = trashIcon;
+        trashIconImg.classList.add('w-5', 'removeButton');
+        //removeButton.appendChild(trashIconImg)
+        //removeButton.innerText = 'X';
+        //removeButton.type = 'button';
 
         project.appendChild(projectTitle);
-        project.appendChild(removeButton);
+        project.appendChild(trashIconImg);
         projectContainer.appendChild(project);
     }
 
