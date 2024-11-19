@@ -42,6 +42,15 @@ function createEventController(listController, domController){
     }
 
     function addSubmitListener(){
+        const dropdown = document.querySelector("#projectDropdown");
+        listController.projectList.forEach((project)=>{
+            console.log(project);
+            const option = document.createElement('option');
+            option.value = project; 
+            option.textContent = project; 
+            dropdown.appendChild(option);
+        })
+
         const modalForm = document.querySelector("#taskInput");
         modalForm.addEventListener('submit', (event)=>{
             event.preventDefault(); 

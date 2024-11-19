@@ -176,7 +176,6 @@ function createDOMController(){
 
 
     function refreshList(objectArray){ 
-        console.log("state from refresh list call: " + state);
         removeAll(); 
         if (!objectArray){
             return;
