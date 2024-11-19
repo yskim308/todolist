@@ -44,7 +44,6 @@ function createEventController(listController, domController){
     function addSubmitListener(){
         const dropdown = document.querySelector("#projectDropdown");
         listController.projectList.forEach((project)=>{
-            console.log(project);
             const option = document.createElement('option');
             option.value = project; 
             option.textContent = project; 
@@ -57,8 +56,9 @@ function createEventController(listController, domController){
             let taskName = document.querySelector("#taskName").value;
             let taskDescription = document.querySelector("#taskDescription").value; 
             let dueDate = document.querySelector("#taskDate").value; 
+            let project = document.querySelector("#projectDropdown").value;
             //create task and insert into taskList object
-            let task = listController.createTask(taskName, taskDescription, dueDate); 
+            let task = listController.createTask(taskName, taskDescription, dueDate, project); 
             listController.addTask(task);
 
             domController.refreshList(listController.todo);

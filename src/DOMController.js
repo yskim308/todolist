@@ -46,10 +46,23 @@ function createDOMController(){
     } 
 
     
-    function createHeader(taskName){
+    function createHeader(taskName, taskProject){
         const header = document.createElement('div'); 
-        header.innerText = taskName; 
-        header.classList.add('text-lg', 'font-semibold', 'leading-none');
+        header.classList.add('flex');
+        
+        const task = document.createElement('div');
+        task.innerText = taskName; 
+        task.classList.add('text-lg', 'font-semibold', 'leading-none');
+
+        const project = document.createElement('div');
+        if (taskProject){
+            project.innerText = '(' + taskProject + ')';
+            project.classList.add('px-5', 'font-medium', 'text-blue-950',
+            'leading-none');
+        }
+
+        header.appendChild(task);
+        header.appendChild(project);
         return header; 
     }
 
@@ -81,7 +94,7 @@ function createDOMController(){
 
     function displayTask(task){
         const taskContainer = document.createElement('div'); 
-        taskContainer.classList.add('flex', 'py-3');
+        taskContainer.classList.add('flex', 'py-3', 'w-full');
         taskContainer.id = 'taskContainer';
 
         //add checkbox 
@@ -89,7 +102,7 @@ function createDOMController(){
         taskContainer.appendChild(checkBox);
         //add task name and description
         const contentContainer = document.createElement('div');    
-        const taskHeader = createHeader(task.name);
+        const taskHeader = createHeader(task.name, task.project);
         const taskDescription = createDescription(task.description);
         contentContainer.appendChild(taskHeader);
         contentContainer.appendChild(taskDescription);
