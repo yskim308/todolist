@@ -48,6 +48,17 @@ function createListController(){
     function addProject(project){
         projectList.push(project);
         updateLocalStorage();
+        const dropdown = document.querySelector("#projectDropdown");
+        while (dropdown.firstChild){
+            dropdown.removeChild(dropdown.lastChild);
+        }
+        projectList.forEach((project)=>{
+            const option = document.createElement('option');
+            option.value = project; 
+            option.textContent = project; 
+            dropdown.appendChild(option);
+        })
+
     }
 
     function removeProject(projectName){
