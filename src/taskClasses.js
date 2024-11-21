@@ -44,10 +44,8 @@ function createListController(){
         sortByDate();
         updateLocalStorage();
     } 
-    
-    function addProject(project){
-        projectList.push(project);
-        updateLocalStorage();
+
+    function updateDropdown(){
         const dropdown = document.querySelector("#projectDropdown");
         while (dropdown.firstChild){
             dropdown.removeChild(dropdown.lastChild);
@@ -58,7 +56,12 @@ function createListController(){
             option.textContent = project; 
             dropdown.appendChild(option);
         })
-
+    }
+    
+    function addProject(project){
+        projectList.push(project);
+        updateLocalStorage();
+        updateDropdown();
     }
 
     function removeProject(projectName){
@@ -67,6 +70,7 @@ function createListController(){
             projectList.splice(index, 1);
         }
         updateLocalStorage();
+        updateDropdown();
     }
     
     function clearCompleted(){
