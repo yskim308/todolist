@@ -114,7 +114,7 @@ function createDOMController(){
         const projectContainer = document.querySelector('#projectContainer');
 
         const project = document.createElement('div'); 
-        project.classList.add('flex', 'pl-5', 'pr-3', 'py-2', 'justify-between', 'hover:bg-gray-200' );
+        project.classList.add('projectButton', 'flex', 'pl-5', 'pr-3', 'py-2', 'justify-between', 'hover:bg-gray-200' );
         project.id = projectName;
 
         const projectTitle = document.createElement('div');

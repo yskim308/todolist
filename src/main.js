@@ -18,4 +18,5 @@ eventController.addClearListener();
 eventController.addFilterViewListener();
 eventController.addProjectSubmitListener();
 eventController.addRemoveProjectListener();
+eventController.addProjectFilterListener();
 
