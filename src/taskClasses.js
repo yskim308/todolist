@@ -69,6 +69,14 @@ function createListController(){
         if (index !== -1){
             projectList.splice(index, 1);
         }
+        const length = todo.length;
+        for (let i = length -1; i >= 0; i--){
+            console.log(todo[i]);
+            if (todo[i].project === projectName && todo[i].project){
+                console.log("splicing " + todo[i].project);
+                todo.splice(i, 1);
+            }
+        }
         updateLocalStorage();
         updateDropdown();
     }

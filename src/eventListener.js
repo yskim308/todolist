@@ -86,6 +86,12 @@ function createEventController(listController, domController){
                 if (confirm("Deleting this project will remove all the tasks as well. are you sure?")){
                     listController.removeProject(event.target.parentNode.id);
                     domController.displayProjectList(listController.projectList);
+
+                    const header = document.querySelector('#header');
+                    if (header === event.target.id){
+                        header.innerText = 'inbox';
+                        domController.refreshList(listController.todo);
+                    }
                 }
             }
         })
@@ -123,9 +129,7 @@ function createEventController(listController, domController){
         const header = document.querySelector('#header');
         const projectContainer = document.querySelector('#projectContainer');
         projectContainer.addEventListener('click', (event)=>{
-            console.log("parent dom clicked");
             if (event.target.classList.contains('projectButton')){
-                console.log(event.target.id);
                 header.innerText = event.target.id; 
                 domController.displayProjectTasks(event.target.id, listController.todo);
             }
