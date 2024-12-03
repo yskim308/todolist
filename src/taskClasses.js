@@ -50,6 +50,10 @@ function createListController(){
         while (dropdown.firstChild){
             dropdown.removeChild(dropdown.lastChild);
         }
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = '--Inbox--';
+        dropdown.appendChild(defaultOption);
         projectList.forEach((project)=>{
             const option = document.createElement('option');
             option.value = project; 

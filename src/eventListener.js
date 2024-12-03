@@ -88,10 +88,8 @@ function createEventController(listController, domController){
                     domController.displayProjectList(listController.projectList);
 
                     const header = document.querySelector('#header');
-                    if (header === event.target.id){
-                        header.innerText = 'inbox';
-                        domController.refreshList(listController.todo);
-                    }
+                    header.innerText = 'inbox';
+                    domController.refreshList(listController.todo);
                 }
             }
         })
