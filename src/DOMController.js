@@ -158,6 +158,21 @@ function createDOMController(){
         today.setHours(0,0,0,0);
 
         for (let i = 0; i < length; i++){
+            const taskdate = array[i].dueDateObject;
+            if (!taskdate){
+                continue;
+            }
+            if (taskdate.getFullYear() === today.getFullYear()
+            && taskdate.getMonth() === today.getMonth()
+            && taskdate.getDate() === today.getDate()){
+                console.log("today: " + today);
+                console.log("taskdate: " + taskdate);
+                console.log(array[i]);
+                displayTask(array[i]);
+            }
+        }
+        /*
+        for (let i = 0; i < length; i++){
             if (array[i].dueDateObject < today){
                 continue
             }
@@ -168,6 +183,7 @@ function createDOMController(){
                 displayTask(array[i]);
             }
         }
+        */
     }
 
     function displayUpcoming(array){

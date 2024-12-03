@@ -20,3 +20,7 @@ eventController.addProjectSubmitListener();
 eventController.addRemoveProjectListener();
 eventController.addProjectFilterListener();
 
+const today = new Date(); 
+console.log(today);
+
+console.log(listController.todo);

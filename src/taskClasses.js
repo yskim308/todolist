@@ -3,9 +3,11 @@ function createListController(){
         let finished = false;
         let dueDateObject;
         if (dueDate){
-            dueDateObject = new Date(dueDate);
-            dueDateObject.setHours(0, 0, 0, 0);
+            const [year, month, date] = dueDate.split('-');
+            console.log([year, month, date]);
+            dueDateObject = new Date(year, month - 1, date);
         }
+        console.log('due date string: ' + dueDate);
         return {name, description, dueDate, finished, dueDateObject, project};
     }
 
