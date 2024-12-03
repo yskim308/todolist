@@ -72,7 +72,8 @@ function createDOMController(){
         const taskDueDate = document.createElement('div');
         taskDueDate.innerHTML = dueDate; 
         taskDueDate.classList.add('text-xs');
-        const inputDate = new Date(dueDate);
+        const [year, month, day] = dueDate.split('-');
+        const inputDate = new Date(year, month - 1, day);
         const today = new Date();
         inputDate.setHours(0, 0, 0, 0);
         today.setHours(0, 0, 0, 0);
