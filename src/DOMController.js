@@ -166,9 +166,6 @@ function createDOMController(){
             if (taskdate.getFullYear() === today.getFullYear()
             && taskdate.getMonth() === today.getMonth()
             && taskdate.getDate() === today.getDate()){
-                console.log("today: " + today);
-                console.log("taskdate: " + taskdate);
-                console.log(array[i]);
                 displayTask(array[i]);
             }
         }

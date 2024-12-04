@@ -4,10 +4,8 @@ function createListController(){
         let dueDateObject;
         if (dueDate){
             const [year, month, date] = dueDate.split('-');
-            console.log([year, month, date]);
             dueDateObject = new Date(year, month - 1, date);
         }
-        console.log('due date string: ' + dueDate);
         return {name, description, dueDate, finished, dueDateObject, project};
     }
 
@@ -23,7 +21,8 @@ function createListController(){
     }
     for (let i = 0; i < todoLength; i++){
         if (todo[i].dueDateObject){
-            todo[i].dueDateObject = new Date(todo[i].dueDate);
+            const [year, month, day] = todo[i].dueDate.split('-');
+            todo[i].dueDateObject = new Date(year, month - 1, day);
         }
     }
 
@@ -39,7 +38,7 @@ function createListController(){
         let projectJSON = JSON.stringify(projectList);
         localStorage.setItem('projectList', projectJSON);
     }
-
+    updateLocalStorage();
 
     function addTask(object){
         todo.push(object);
@@ -77,9 +76,7 @@ function createListController(){
         }
         const length = todo.length;
         for (let i = length -1; i >= 0; i--){
-            console.log(todo[i]);
             if (todo[i].project === projectName && todo[i].project){
-                console.log("splicing " + todo[i].project);
                 todo.splice(i, 1);
             }
         }
