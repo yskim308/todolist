@@ -8,7 +8,7 @@
     <script defer src="bundle.js"></script></head>
     <body class="h-full w-full flex flex-col justify-between">   
         <main class="flex h-full">
-            <aside class="basis-80 bg-blue-50 flex flex-col">
+            <aside class="hidden lg:block basis-80 bg-blue-50 flex flex-col">
                 <button type="button" id="taskInputButton" class="flex h-10 items-center self-center mt-5 mx-5 hover:animate-pulse">
                     <svg class="h-full"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path fill="#083344" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
                     <p class="text-lg p-2  text-blue-950">Add Task</p>
@@ -41,8 +41,11 @@
                     </form>
                 </dialog>
             </aside>
-            <content id='content-container' class="w-full px-10 py-5 flex justify-start">
-                <div id='content' class='p-10'>
+            <button type='button' id='sidebarButton' class='lg:hidden flex items-start'>
+                <svg class='w-6 ml-2 mt-2 hover:bg-gray-100' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>menu</title><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+            </button>
+            <content id='content-container' class="w-full px-3 lg:px-10 py-5 flex justify-start">
+                <div id='content' class='p-3 lg:p-10'>
                     <div id='header-container' class='flex pb-6'>
                         <h1 id='header' class='text-blue-950 font-bold text-6xl'>inbox</h1>
                         <button type='button' id='removeTaskButton' class='px-10 self-end'>clear</button>
