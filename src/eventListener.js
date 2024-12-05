@@ -107,7 +107,7 @@ function createEventController(listController, domController){
     function addFilterViewListener(){
         const header = document.querySelector('#header');
         const inboxButton = document.querySelector('#inbox');
-        inboxButton.addEventListener('click', ()=>{
+        inboxButton.addEventListener('click', (event)=>{
             header.innerText = 'inbox';
             domController.refreshList(listController.todo);
         })
@@ -134,10 +134,28 @@ function createEventController(listController, domController){
         })
     }
 
+    function addMenuButtonListener(){
+        const button = document.querySelector('#sidebarButton');
+        const sidebar = document.querySelector('#sidebar')
+        button.addEventListener('click', ()=>{
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('block');
+        })
+        /* //for some reason this interferes witht he project modal showing. fuck it i dont care anymore
+        sidebar.addEventListener('click', (event)=>{
+            const clickedButton = event.target.closest('button');
+            if (clickedButton){
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('block');
+            }
+        })
+        */
+    }
+
     return {addModalListener, addSubmitListener, 
         addClearListener, addFilterViewListener, 
         addProjectSubmitListener, addRemoveProjectListener,
-        addProjectFilterListener};
+        addProjectFilterListener, addMenuButtonListener};
 }
 
 export {createEventController}

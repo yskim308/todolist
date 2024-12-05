@@ -19,4 +19,4 @@ eventController.addFilterViewListener();
 eventController.addProjectSubmitListener();
 eventController.addRemoveProjectListener();
 eventController.addProjectFilterListener();
-
+eventController.addMenuButtonListener();
