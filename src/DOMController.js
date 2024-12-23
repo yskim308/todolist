@@ -35,6 +35,10 @@ function createDOMController(){
                 task.finished = false; 
             }
         })
+        if (task.finished){
+            checkBox.checked = true;
+            parentNode.classList.add('line-through', 'decoration-2');
+        }
         checkBoxContainer.appendChild(checkBox);
         return checkBoxContainer; 
     } 
